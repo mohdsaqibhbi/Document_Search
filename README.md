@@ -12,6 +12,10 @@ The **Document Search API** allows you to perform intelligent and efficient sear
 
 ---
 
+## Diagram
+
+![high_level_diagram](data/images/high_level_diagram.png)
+
 ## 📦 Installation & Setup
 
 Follow these steps to set up and run the API locally:
