@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Document Search",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/api/tests/document_search.py",
+            "cwd": "${workspaceFolder}/src/api",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src/api"
+            }
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "documents": {
+        "location": "../../data/documents",
+        "doc_type": [".txt", ".csv", ".pdf", ".png"],
+        "location_type": "local"
+    },
+    "bm25": {
+        "k": 1.2,
+        "b": 0.75,
+        "delta": 0.5
+    },
+    "text_preprocessor": {
+        "pattern": "[^a-z0-9\\s]"
+    }
+}

@@ -1,0 +1,11 @@
+fastapi==0.112.0
+pydantic==2.8.2
+pydantic-settings==2.4.0
+uvicorn==0.30.5
+azure-storage-blob==12.22.0
+azure-storage-file-share==12.17.0
+pillow==11.0.0
+cffi
+PyPDF2==3.0.1
+pillow==11.0.0
+pytesseract==0.3.13
