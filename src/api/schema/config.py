@@ -2,7 +2,8 @@ import json
 import os
 from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from pydantic_settings import BaseSettings
 
 class Document(BaseModel):
     location: str
@@ -26,16 +27,11 @@ class AppConfig(BaseModel):
         with open(os.path.join(os.getcwd(), "config.json"), "r") as f:
             config = json.load(f)
         super().__init__(*args, **{**kwargs, **config})
-        
-class AzureBlobConfig(BaseModel):
-    connection_string: str = ""
-    container_name: str = ""
 
-    def __init__(self, *args: list[Any], **kwargs: dict[str, Any]) -> None:
-        
-        env_config = {}
-        env_config_path = os.path.join(os.getcwd(), "env_config.json")
-        if os.path.exists(env_config_path):
-            with open(env_config_path, "r") as f:
-                env_config = json.load(f)
-        super().__init__(*args, **{**kwargs, **env_config})
+class AzureBlobConfig(BaseSettings):
+    connection_str: str = Field(
+        ..., alias="BLOB_CONNECTION_STR", description="Blob connection string"
+    )
+    container_name: str = Field(
+        ..., alias="CONTAINER_NAME", description="Blob container name"
+    )

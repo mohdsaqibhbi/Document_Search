@@ -17,6 +17,9 @@ The API offers search endpoint to support various document retrieval.
 """
 
 cfg = AppConfig()
-azure_cfg = AzureBlobConfig()
+
+from dotenv import load_dotenv
+load_dotenv()
+blob_config = AzureBlobConfig()
 
 log.info_print(f"Starting {APP_NAME}")

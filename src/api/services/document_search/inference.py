@@ -1,27 +1,23 @@
-import os
-from globals import cfg, azure_cfg
-from services.data.azure_blob import AzureBlobReader
+from globals import cfg
 from services.data.load_data import DocumentLoader
 from services.data.preprocess import TextPreprocessor
 from services.document_search.search_engine import BM25
 from schema.data import DocumentMatched, DocumentMatchedData
+from exceptions.data import DataBaseException
 
 class DocumentSearchEngine:
     def __init__(self):
-        
-        if cfg.documents.location_type == "local":
-            file_list = [os.path.join(cfg.documents.location, file) for file in os.listdir(cfg.documents.location)]
-        else:
-            blob_reader = AzureBlobReader(
-            azure_cfg.connection_string, 
-            azure_cfg.container_name, 
-            cfg.documents.location)
-        
-            file_list = blob_reader.get_file_paths_from_folder()
             
         self.documents = DocumentLoader(
-                file_list, 
-                cfg.documents.doc_type).load_documents()
+                cfg.documents.location, 
+                cfg.documents.doc_type,
+                cfg.documents.location_type
+                ).load_documents()
+        
+        if not self.documents:
+            raise DataBaseException(
+                    "Documents are not found in the specified location."
+                )
         
         preprocessor = TextPreprocessor(cfg.text_preprocessor.pattern)
         

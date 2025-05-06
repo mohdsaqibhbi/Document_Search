@@ -58,13 +58,19 @@ pip install -r requirements.txt
 }
 ```
 
-### 5. Create and Setup Cloud (Azure) environment config `env_config.json` [Optional]
+### 5. Create and Setup Cloud (Azure) environment config `.env`
 ```
-{
-    "connection_string": "your-azure-blob-storage-connection-string",
-    "container_name": "your-azure-container-name"
-}
+BLOB_CONNECTION_STR=your-connection-string
+CONTAINER_NAME=your-container-name
 ```
+Set the parameters to blank string if you do not have these available.
+
+**Example:**
+```
+BLOB_CONNECTION_STR=""
+CONTAINER_NAME=""
+```
+
 Also, change the **location_type** from **_local_** to **_azure_** in `config.json`
 
 ### 6. Start the API
